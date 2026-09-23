@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SNAKE BATTLE — Grow. Survive. Outplay.</title>
+  <meta name="description" content="Interactive Snake Battle Game demonstrating the 2026 AI Prompting Workflow. Featuring AI opponents, Rule 5 corpse-to-fruit conversion, synthesized audio, and touch controls.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Header Banner -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="brand">
+          <div class="logo-orb"></div>
+          <h1>SNAKE BATTLE</h1>
+        </div>
+        <div class="workflow-badge">AI PROMPTING 2026 &bull; PROJECT 1</div>
+      </div>
+    </header>
+
+    <!-- Main Game Container -->
+    <main class="game-container">
+      
+      <!-- Top HUD Stats Bar -->
+      <section class="hud-panel" id="hud-panel" aria-label="Game HUD">
+        <div class="stat-card">
+          <span class="stat-label">SCORE</span>
+          <span class="stat-value" id="hud-score">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">BEST</span>
+          <span class="stat-value" id="hud-best">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">LENGTH</span>
+          <span class="stat-value" id="hud-length">4</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">TIME</span>
+          <span class="stat-value" id="hud-time">00:00</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">OPPONENTS</span>
+          <span class="stat-value" id="hud-opponents">3</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">SPEED</span>
+          <span class="stat-value highlight" id="hud-speed">Normal</span>
+        </div>
+      </section>
+
+      <!-- Action Toolbar Controls -->
+      <div class="toolbar-controls">
+        <button id="btn-pause" class="tool-btn" title="Pause / Resume Game (Space)">
+          <span class="icon">⏸</span> <span class="label">PAUSE</span>
+        </button>
+        <button id="btn-sound" class="tool-btn" title="Toggle Sound (M)">
+          <span class="icon">🔊</span> <span class="label">SOUND: ON</span>
+        </button>
+        <button id="btn-restart" class="tool-btn" title="Restart Battle (R)">
+          <span class="icon">🔄</span> <span class="label">RESTART</span>
+        </button>
+      </div>
+
+      <!-- Arena Canvas Wrapper -->
+      <div class="canvas-wrapper" id="canvas-wrapper">
+        <canvas id="game-canvas" width="600" height="600"></canvas>
+
+        <!-- Start / Lobby Overlay Screen -->
+        <div class="overlay active" id="start-screen">
+          <div class="overlay-card lobby-card">
+            <div class="lobby-header">
+              <h2 class="hero-title">SNAKE BATTLE</h2>
+              <p class="hero-subtitle">Grow. Survive. Outplay.</p>
+            </div>
+
+            <div class="settings-grid">
+              <!-- Snake Color Picker -->
+              <div class="setting-group">
+                <label for="player-color-picker">
+                  <span class="setting-title">Snake Color</span>
+                  <span class="setting-hint">Your battle skin</span>
+                </label>
+                <div class="color-picker-wrapper">
+                  <input type="color" id="player-color-picker" value="#00ff88">
+                  <div class="preset-colors">
+                    <button type="button" class="color-chip active" style="--c:#00ff88" data-color="#00ff88"></button>
+                    <button type="button" class="color-chip" style="--c:#00d4ff" data-color="#00d4ff"></button>
+                    <button type="button" class="color-chip" style="--c:#e056fd" data-color="#e056fd"></button>
+                    <button type="button" class="color-chip" style="--c:#f9ca24" data-color="#f9ca24"></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fruit Color Picker -->
+              <div class="setting-group">
+                <label for="fruit-color-picker">
+                  <span class="setting-title">Fruit Color</span>
+                  <span class="setting-hint">Target harvest</span>
+                </label>
+                <div class="color-picker-wrapper">
+                  <input type="color" id="fruit-color-picker" value="#ff0055">
+                  <div class="preset-colors">
+                    <button type="button" class="color-chip active" style="--c:#ff0055" data-color="#ff0055"></button>
+                    <button type="button" class="color-chip" style="--c:#ffbe76" data-color="#ffbe76"></button>
+                    <button type="button" class="color-chip" style="--c:#ff7979" data-color="#ff7979"></button>
+                    <button type="button" class="color-chip" style="--c:#badc58" data-color="#badc58"></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Computer Opponents Selector -->
+              <div class="setting-group">
+                <label>
+                  <span class="setting-title">Computer Opponents</span>
+                  <span class="setting-hint">AI battle rivals</span>
+                </label>
+                <div class="segmented-control" id="opponents-selector">
+                  <button type="button" class="seg-btn" data-value="1">1</button>
+                  <button type="button" class="seg-btn" data-value="2">2</button>
+                  <button type="button" class="seg-btn active" data-value="3">3</button>
+                  <button type="button" class="seg-btn" data-value="4">4</button>
+                </div>
+              </div>
+
+              <!-- Speed Selector -->
+              <div class="setting-group">
+                <label>
+                  <span class="setting-title">Speed</span>
+                  <span class="setting-hint">Arena pace</span>
+                </label>
+                <div class="segmented-control" id="speed-selector">
+                  <button type="button" class="seg-btn" data-value="Easy">Easy</button>
+                  <button type="button" class="seg-btn active" data-value="Normal">Normal</button>
+                  <button type="button" class="seg-btn" data-value="Fast">Fast</button>
+                  <button type="button" class="seg-btn" data-value="Frenzy">Frenzy</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rules Peek -->
+            <div class="rule-callout">
+              <span class="callout-icon">⚡</span>
+              <p><strong>RULE 5:</strong> When any snake dies, its body turns into fruit for others to eat!</p>
+            </div>
+
+            <!-- Start Battle Button -->
+            <button id="btn-start-battle" class="primary-btn glow-btn">
+              START BATTLE
+            </button>
+          </div>
+        </div>
+
+        <!-- Pause Overlay -->
+        <div class="overlay" id="pause-screen">
+          <div class="overlay-card small-card">
+            <h2 class="overlay-title">GAME PAUSED</h2>
+            <p class="overlay-subtitle">Press Space or Resume to continue</p>
+            <button id="btn-resume" class="primary-btn">RESUME BATTLE</button>
+          </div>
+        </div>
+
+        <!-- Game Over / Victory Overlay -->
+        <div class="overlay" id="end-screen">
+          <div class="overlay-card">
+            <h2 class="overlay-title" id="end-title">GAME OVER</h2>
+            <p class="overlay-subtitle" id="end-subtitle">You were eliminated!</p>
+            
+            <div class="end-stats-summary">
+              <div class="end-stat-box">
+                <span class="lbl">FINAL SCORE</span>
+                <span class="val" id="end-final-score">0</span>
+              </div>
+              <div class="end-stat-box">
+                <span class="lbl">SNAKE LENGTH</span>
+                <span class="val" id="end-final-length">4</span>
+              </div>
+              <div class="end-stat-box">
+                <span class="lbl">KILLS / RIVALS DEAD</span>
+                <span class="val" id="end-final-kills">0</span>
+              </div>
+              <div class="end-stat-box">
+                <span class="lbl">SURVIVAL TIME</span>
+                <span class="val" id="end-final-time">00:00</span>
+              </div>
+            </div>
+
+            <div class="end-actions">
+              <button id="btn-play-again" class="primary-btn glow-btn">PLAY AGAIN</button>
+              <button id="btn-lobby" class="secondary-btn">SETTINGS LOBBY</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Touch Controls (Responsive Virtual D-Pad for Mobile) -->
+      <section class="touch-controls-section" aria-label="Touch Controls">
+        <div class="dpad-container">
+          <button id="touch-up" class="dpad-btn up" aria-label="Up">
+            <span class="arrow">↑</span>
+          </button>
+          <div class="dpad-middle-row">
+            <button id="touch-left" class="dpad-btn left" aria-label="Left">
+              <span class="arrow">←</span>
+            </button>
+            <div class="dpad-center-hub"></div>
+            <button id="touch-right" class="dpad-btn right" aria-label="Right">
+              <span class="arrow">→</span>
+            </button>
+          </div>
+          <button id="touch-down" class="dpad-btn down" aria-label="Down">
+            <span class="arrow">↓</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Active Opponent Status Legend -->
+      <section class="opponents-legend" id="opponents-legend">
+        <!-- Injected via script.js -->
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-info">
+        <span>PROJECT 1 &bull; AI PROMPTING WORKFLOW 2026</span>
+        <span class="divider">|</span>
+        <span>Keyboard: <strong>WASD / Arrow Keys</strong> &bull; Pause: <strong>Space</strong> &bull; Sound: <strong>M</strong></span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

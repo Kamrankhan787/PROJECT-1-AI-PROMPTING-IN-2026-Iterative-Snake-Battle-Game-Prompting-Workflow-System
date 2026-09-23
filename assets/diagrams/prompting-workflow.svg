@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1350" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0d14"/>
+      <stop offset="100%" stop-color="#141923"/>
+    </linearGradient>
+    <linearGradient id="primary-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ff88"/>
+      <stop offset="100%" stop-color="#00d4ff"/>
+    </linearGradient>
+    <linearGradient id="coral-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff0055"/>
+      <stop offset="100%" stop-color="#ff5588"/>
+    </linearGradient>
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#192231"/>
+      <stop offset="100%" stop-color="#101722"/>
+    </linearGradient>
+    <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#00ff88"/>
+    </marker>
+    <marker id="arrow-pink" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ff0055"/>
+    </marker>
+  </defs>
+
+  <style>
+    .title { font-family: 'Inter', -apple-system, sans-serif; font-size: 26px; font-weight: 800; fill: #ffffff; letter-spacing: 2px; }
+    .subtitle { font-family: 'Inter', -apple-system, sans-serif; font-size: 14px; fill: #8899aa; letter-spacing: 1px; }
+    .node-title { font-family: 'Inter', -apple-system, sans-serif; font-size: 15px; font-weight: 700; fill: #ffffff; }
+    .node-desc { font-family: 'Inter', -apple-system, sans-serif; font-size: 12px; fill: #94a3b8; }
+    .badge { font-family: 'Inter', -apple-system, sans-serif; font-size: 10px; font-weight: 800; fill: #000000; }
+    .loop-text { font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; font-weight: 700; fill: #ff0055; letter-spacing: 1px; }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="1000" height="1350" rx="20" fill="url(#bg-grad)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Header -->
+  <g transform="translate(500, 50)" text-anchor="middle">
+    <text class="title" y="0">AI PROMPTING IN 2026: WORKFLOW SYSTEM</text>
+    <text class="subtitle" y="28">ITERATIVE VALUE CREATION, CONTINUOUS RUBRIC EVALUATION &amp; HUMAN OVERSIGHT</text>
+  </g>
+
+  <!-- Central Nodes Container (X: 300 to 700, width: 400) -->
+  
+  <!-- 1. USER GOAL -->
+  <g transform="translate(320, 110)">
+    <rect width="360" height="60" rx="10" fill="url(#card-grad)" stroke="#00d4ff" stroke-width="2"/>
+    <text class="node-title" x="180" y="27" text-anchor="middle">1. USER GOAL</text>
+    <text class="node-desc" x="180" y="47" text-anchor="middle">Experience-first concept (e.g. Snake eats fruit)</text>
+  </g>
+  <line x1="500" y1="170" x2="500" y2="200" stroke="#00d4ff" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 2. INITIAL PROMPT -->
+  <g transform="translate(320, 200)">
+    <rect width="360" height="60" rx="10" fill="url(#card-grad)" stroke="#334155" stroke-width="1.5"/>
+    <text class="node-title" x="180" y="27" text-anchor="middle">2. INITIAL PROMPT</text>
+    <text class="node-desc" x="180" y="47" text-anchor="middle">Concise starting prompt in prompts/01_initial_prompt.md</text>
+  </g>
+  <line x1="500" y1="260" x2="500" y2="290" stroke="#00d4ff" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 3. AI BUILDS V1 -->
+  <g transform="translate(320, 290)">
+    <rect width="360" height="60" rx="10" fill="url(#card-grad)" stroke="#334155" stroke-width="1.5"/>
+    <text class="node-title" x="180" y="27" text-anchor="middle">3. AI BUILDS FIRST VERSION (V1)</text>
+    <text class="node-desc" x="180" y="47" text-anchor="middle">Minimal viable playable canvas, mechanics &amp; loop</text>
+  </g>
+  <line x1="500" y1="350" x2="500" y2="380" stroke="#00ff88" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+
+  <!-- 4. PLAY / TEST (Loop Target) -->
+  <g id="play-test-target" transform="translate(320, 380)">
+    <rect width="360" height="65" rx="10" fill="#0d281e" stroke="#00ff88" stroke-width="2" filter="url(#neon-glow)"/>
+    <text class="node-title" x="180" y="28" text-anchor="middle" fill="#00ff88">4. PLAY / TEST ARTIFACT</text>
+    <text class="node-desc" x="180" y="49" text-anchor="middle" fill="#a7f3d0">Visceral hands-on testing (Controls, feel, bugs)</text>
+  </g>
+  <line x1="500" y1="445" x2="500" y2="475" stroke="#00d4ff" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 5. OBSERVE EXPERIENCE -->
+  <g transform="translate(320, 475)">
+    <rect width="360" height="60" rx="10" fill="url(#card-grad)" stroke="#334155" stroke-width="1.5"/>
+    <text class="node-title" x="180" y="27" text-anchor="middle">5. OBSERVE EXPERIENCE</text>
+    <text class="node-desc" x="180" y="47" text-anchor="middle">Notice what you wish were different or exciting</text>
+  </g>
+  <line x1="500" y1="535" x2="500" y2="565" stroke="#00d4ff" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 6. SPECIFIC FEEDBACK / WISH -->
+  <g transform="translate(320, 565)">
+    <rect width="360" height="60" rx="10" fill="url(#card-grad)" stroke="#334155" stroke-width="1.5"/>
+    <text class="node-title" x="180" y="27" text-anchor="middle">6. SPECIFIC FEEDBACK / WISH</text>
+    <text class="node-desc" x="180" y="47" text-anchor="middle">Numbered, clear friction points (e.g. Snake color, speeds)</text>
+  </g>
+  <line x1="500" y1="625" x2="500" y2="655" stroke="#00d4ff" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 7. AI MODIFIES PROJECT (V2 / V3) -->
+  <g transform="translate(320, 655)">
+    <rect width="360" height="65" rx="10" fill="url(#card-grad)" stroke="#00d4ff" stroke-width="1.5"/>
+    <text class="node-title" x="180" y="28" text-anchor="middle">7. AI MODIFIES PROJECT</text>
+    <text class="node-desc" x="180" y="49" text-anchor="middle">Rule change: AI Snakes + Dead Snake &rarr; Fruit Mechanic</text>
+  </g>
+  <line x1="500" y1="720" x2="500" y2="750" stroke="#00d4ff" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 8. RUBRIC SELF-EVALUATION -->
+  <g transform="translate(320, 750)">
+    <rect width="360" height="65" rx="10" fill="url(#card-grad)" stroke="#334155" stroke-width="1.5"/>
+    <text class="node-title" x="180" y="28" text-anchor="middle">8. RUBRIC SELF-EVALUATION</text>
+    <text class="node-desc" x="180" y="49" text-anchor="middle">Score 7 criteria (1-10): Clarity, Fun, Curve, Polish, etc.</text>
+  </g>
+  <line x1="500" y1="815" x2="500" y2="845" stroke="#00d4ff" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 9. IDENTIFY WEAKEST AREA -->
+  <g transform="translate(320, 845)">
+    <rect width="360" height="60" rx="10" fill="url(#card-grad)" stroke="#ff0055" stroke-width="1.5"/>
+    <text class="node-title" x="180" y="27" text-anchor="middle" fill="#ff708f">9. IDENTIFY WEAKEST AREA</text>
+    <text class="node-desc" x="180" y="47" text-anchor="middle">Find bottleneck dimension to maximize improvement ROI</text>
+  </g>
+  <line x1="500" y1="905" x2="500" y2="935" stroke="#00d4ff" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 10. IMPLEMENT HIGH-IMPACT IMPROVEMENT -->
+  <g transform="translate(320, 935)">
+    <rect width="360" height="65" rx="10" fill="url(#card-grad)" stroke="#334155" stroke-width="1.5"/>
+    <text class="node-title" x="180" y="28" text-anchor="middle">10. HIGH-IMPACT IMPROVEMENT</text>
+    <text class="node-desc" x="180" y="49" text-anchor="middle">Synthesized audio, neon visuals &amp; touch controls</text>
+  </g>
+  <line x1="500" y1="1000" x2="500" y2="1030" stroke="#00d4ff" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 11. RE-SCORE -->
+  <g transform="translate(320, 1030)">
+    <rect width="360" height="60" rx="10" fill="url(#card-grad)" stroke="#334155" stroke-width="1.5"/>
+    <text class="node-title" x="180" y="27" text-anchor="middle">11. RE-SCORE CRITERIA</text>
+    <text class="node-desc" x="180" y="47" text-anchor="middle">Compare deltas to verify genuine progression</text>
+  </g>
+  <line x1="500" y1="1090" x2="500" y2="1120" stroke="#00ff88" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+
+  <!-- 12. SHIP / DEPLOY (Human Decides) -->
+  <g transform="translate(320, 1120)">
+    <rect width="360" height="75" rx="12" fill="url(#card-grad)" stroke="#00ff88" stroke-width="2.5" filter="url(#neon-glow)"/>
+    <text class="node-title" x="180" y="32" text-anchor="middle" fill="#00ff88">12. SHIP / DEPLOY READY</text>
+    <text class="node-desc" x="180" y="55" text-anchor="middle">Human reviewer approves static web application release</text>
+  </g>
+
+  <!-- FEEDBACK LOOP BACK-ARROW (From Re-Score back to Play / Test) -->
+  <path d="M 680 1060 H 840 V 412 H 695" fill="none" stroke="#ff0055" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrow-pink)"/>
+  
+  <g transform="translate(855, 730)">
+    <rect x="-85" y="-30" width="170" height="60" rx="8" fill="#141923" stroke="#ff0055" stroke-width="1.5"/>
+    <text class="loop-text" x="0" y="-8" text-anchor="middle">ITERATION LOOP</text>
+    <text class="node-desc" x="0" y="14" text-anchor="middle">If weakest area needs</text>
+    <text class="node-desc" x="0" y="26" text-anchor="middle">further refinement</text>
+  </g>
+
+  <!-- Left Side Annotations (Human vs Machine Roles) -->
+  <g transform="translate(60, 410)">
+    <rect width="210" height="120" rx="10" fill="#121824" stroke="#1e293b" stroke-width="1"/>
+    <text class="node-title" x="15" y="30" fill="#00ff88">HUMAN ROLE</text>
+    <text class="node-desc" x="15" y="55">&bull; Sets goals &amp; vision</text>
+    <text class="node-desc" x="15" y="75">&bull; Plays &amp; feels the artifact</text>
+    <text class="node-desc" x="15" y="95">&bull; Retains ship/stop authority</text>
+  </g>
+
+  <g transform="translate(60, 750)">
+    <rect width="210" height="120" rx="10" fill="#121824" stroke="#1e293b" stroke-width="1"/>
+    <text class="node-title" x="15" y="30" fill="#00d4ff">AI ROLE</text>
+    <text class="node-desc" x="15" y="55">&bull; Builds &amp; updates files</text>
+    <text class="node-desc" x="15" y="75">&bull; Detects structural bugs</text>
+    <text class="node-desc" x="15" y="95">&bull; Computes rubric criteria</text>
+  </g>
+
+  <!-- Footer Tag -->
+  <text class="subtitle" x="500" y="1290" text-anchor="middle" fill="#64748b">Project 1 &bull; Iterative Snake Battle Game &bull; MIT License &bull; 2026</text>
+</svg>

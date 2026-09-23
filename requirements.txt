@@ -1,0 +1,4 @@
+# Requirements for Project 1 - AI Prompting in 2026
+# The core project, test suite, and CLI workflow system use Python 3.8+ standard library
+# No external heavy dependencies are required. Optional tools for extended testing:
+# pytest>=7.0.0
